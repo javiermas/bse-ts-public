@@ -3,7 +3,7 @@
 ```
 pip install poetry==2.1.2
 poetry config virtualenvs.in-project true
-poetry install --no-root
+poetry install
 ```
 
 ## Project

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "time_series"
+name = "forecasting"
 version = "0.1.0"
 description = "Time series forecasting class at BSE"
 authors = ["Javier Mas Adell <javier.mas93@gmail.com>"]
