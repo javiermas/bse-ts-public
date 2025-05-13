@@ -1,2 +1,3 @@
 data/test_data.csv
 .vscode
+__pycache__
