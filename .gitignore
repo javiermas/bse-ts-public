@@ -1,3 +1,4 @@
+.vscode
 mlruns
 .ipynb_checkpoints
 __pycache__
