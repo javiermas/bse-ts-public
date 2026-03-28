@@ -1,3 +1,5 @@
-data/test_data.csv
-.vscode
+mlruns
+.ipynb_checkpoints
 __pycache__
+.DS_Store
+student_projects

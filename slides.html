@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Time Series Forecasting and Optimization</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      
+      /* Two-column layout classes */
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      
+      /* Inverse slide styling */
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      
+      /* Image handling */
+      img {
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+      }
+      
+      /* Blockquote styling */
+      blockquote {
+        border-left: 0.3em solid #ccc;
+        padding-left: 1em;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+
+# Previous knowledge and student surveys
+
+Please fill the students surveys at the end of the course!
+
+---
+
+# Time series forecasting and optimization
+
+.left[
+### About me
+**Msc Data Science at BSE**
+Data at:
+* Telefonica - Koa Health
+* Glovo
+* Kannact Health
+* Sixt
+]
+
+---
+layout: false
+
+## Learning objectives
+
+* Theoretical understanding of time series problems
+* Methods to analyze and visualize time series
+* Methods to forecast time series
+* Constraint-based optimization
+* Project: forecasting sales
+
+---
+
+## Time-series data is everywhere
+
+* Forecasting psychotic episodes at Koa
+* Measuring impact at Kannact
+* Selecting the optimal number of couriers at Glovo
+
+---
+
+## What makes time series data different?
+
+Let’s walk through an example: predicting height vs predicting student enrollment.
+
+---
+
+## Stationarity
+
+When forecasting, we model a conditional distribution:
+
+$$p(y \mid X; \theta)$$
+
+For a **specific value** $X = x$, the conditional mean is:
+
+$$E[y \mid X = x; \theta]$$
+
+If we observe $y_t$ multiple times when $X_t = x$, we can estimate this with the sample average:
+
+$$
+\frac{1}{n\_x} \sum\_{t}^{} y\_t \quad \text{where } X\_t = x
+$$
+
+If $p(y \mid X; \theta)$ is stationary, then the sample average converges to the true conditional expectation as $n_x$ grows (Law of Large Numbers applies).
+
+---
+
+## Stationarity and forecasting
+
+* A stationary conditional distribution means its properties don't change over time
+* The sample average $\frac{1}{n}\sum_{t=1}^{n} y_t$ is then an **unbiased estimator** of $E[y \mid X; \theta]$
+* Law of Large Numbers + Central Limit Theorem apply → confidence intervals and hypothesis tests are valid
+* **Parameter estimates from OLS are unbiased and consistent**
+
+**Without stationarity:**
+* The conditional mean might drift over time → sample average ≠ true expectation
+* Standard errors are incorrect → confidence intervals are unreliable
+* You might think a pattern is significant when it's just due to the trend
+
+
+---
+
+## Stationarity
+
+A stationary time series is a stochastic process whose statistical properties (like mean, variance, autocorrelation) are constant over time. That is, **a time series in a steady state**.
+
+* **Weak:** mean and variance don’t change over time
+* **Strong:** entire distribution doesn’t change over time
+* Closely related to the IID concept
+* The sample mean (average) and variance are good (unbiased) estimators of the distribution mean and variance.
+
+
+---
+
+## Stationarity: technical overview
+
+* Non-stationary time series have patterns that can be modelled.
+* Do seasonalities make a TS non-stationary?
+* Example of non-stationary TS:
+    ![Non-stationary TS Example](url_placeholder)
+
+---
+
+## Stationary time series (continued)
+
+* Stationary time series have no predictable patterns in the long term.
+* Perfect example: white noise.
+* Their values don’t depend on time.
+* Example of +/- stationary TS:
+    ![Stationary TS Example](url_placeholder)
+* Some difference in volatility
+
+---
+
+## Why does stationarity matter?
+
+**The AutoRegressive (AR) model**
+
+The present is a function of the past:
+
+$$X_t = \phi X_{t-1} + \epsilon_t$$
+
+* Key assumption: the phi coefficient has to be between -1 and 1.
+* What does this mean?
+* Just like a linear regression, could be solved using OLS
+
+---
+
+## AR(1) Example
+
+* AR(1) to predict beer production
+
+![Beer Production Prediction](url_placeholder)
+
+---
+
+## Why does stationarity matter?
+
+**Variance changes over time**
+
+* Law of large numbers (LLN) and central limit theorem (CLT) rely on the process being stationary.
+* Many traditional statistical time series models rely on LLN/CLT.
+* **Think of OLS’s assumptions:**
+    * The expected value of the error is 0 (unbiased estimators).
+    * The variance of the error is constant over time.
+    * Errors are uncorrelated to each other.
+
+---
+
+## Stationarity and Decision Trees
+
+* Decision-trees are unable to generate predictions outside of the range of values of your target
+
+---
+
+## Is stationarity good or bad?
+
+* Non-stationary processes can usually be made stationary with a few transformations!
+* We like non-stationary processes: there might be patterns we can predict
+* However, trends cannot be handled directly by the main models, so they need to be dealt with.
+
+---
+
+## Time Series Patterns
+
+* **Trend:** underlying change over the long-term.
+    * Example: company growth.
+* **Seasonality:** recurrent patterns of similar length.
+    * Example: orders within the day.
+* **Cycles:** patterns of indeterminate length.
+    * Example: product hype or economic crisis.
+* **Outliers:** could be considered seasonality or cycles
+
+---
+
+## Seasonality
+
+* Not to get confused with natural ‘seasons’.
+* Seasons can be a seasonality (e.g. company reports YoY instead of QoQ).
+* **Definition:** Seasonality is any recurrent pattern with a fixed start and end.
+
+---
+
+## Forecasting time series: Workflow
+
+1.  **Exploratory Data Analysis (EDA):**
+    * Helps define the problem
+    * How many lags ahead can we predict?
+    * At what resolution do we need to predict?
+2.  **Data processing and feature generation**
+3.  **Modelling and validation**
+4.  **Deployment**
+
+---
+
+## Coding time…
+
+* Make your life easy: resample at a less-granular resolution whenever possible
+* Be careful with explicit and implicit missing data, outliers
+* Make use of python libraries: resample, asfreq, merge_asof…
+* Try to understand the seasonalities and trend in your TS
+* Given this, what model parameterizations will perform best?
+
+---
+
+## Final remarks: EDA for time series problems
+
+* Is the trend linear, quadratic or exponential?
+* Always keep in mind how many steps ahead you’ll have to predict
+
+---
+
+## Time series problems
+
+**When generating features for boosting methods look at:**
+* TS characteristics (descriptive stats)
+* Domain-specific features
+
+**Model iteration:**
+* Performance >> statistical tests
+* Beware of data leaks
+* Check performance on every iteration, ‘too good to be true’ performance.
+    * Common causes: rolling functions on the target, shifts, incorrect/no use of group by
+
+---
+
+## Common forecasting models
+
+* **Naive models**
+    * Mean/median
+    * Last point
+* **ARIMA**
+* **Boosting methods**
+* **Deep learning methods**
+
+---
+
+## Naive models
+
+* Based on heuristics: no learning
+* They can be good as baselines.
+
+.pull-left[
+**Pros**
+* They’re computationally cheap and require no maintenance.
+* Very stable.
+]
+
+.pull-right[
+**Cons**
+* They don’t exploit the data to its full extent.
+* They often require processing the data to provide decent performance.
+]
+
+---
+
+## ARIMA models
+
+**Three components:**
+* **AR:** autoregressive
+* **I:** integration
+* **MA:** moving average
+
+.pull-left[
+**Pros**
+* Explainability
+* Few parameters
+]
+
+.pull-right[
+**Cons**
+* Rigid: linear combinations
+* Bad for incorporating external factors
+]
+
+*Python’s implementation available.*
+
+---
+
+## SARIMA models
+
+.pull-left[
+**Pros**
+* Same as ARIMA
+* Incorporate seasonalities into your model explicitly
+* Resulting model can be sparser
+]
+
+.pull-right[
+**Cons**
+* Same as ARIMA
+* Only allows for 1 seasonality
+]
+
+---
+
+## Boosting methods
+
+* Family of methods: train iteratively a number of simple models (weak learners) where the errors at one iteration are priced into the next iteration.
+* A weighted ensemble of those models is used as a final prediction.
+
+.pull-left[
+**Pros**
+* Flexible → performance
+* External features improve performance
+]
+
+.pull-right[
+**Cons**
+* Need lots of tuning (although CatBoost works great out of the box)
+* Not very interpretable (although SHAP helps)
+]
+
+---
+
+## Constraint-based optimization
+
+**Why constraint-based optimization?**
+* Forecasts tell you what might happen
+* Optimization tells you what to do about it
+* Common use cases: staffing, routing, inventory, energy, marketing budgets
+
+---
+
+## From forecasting to decision making
+
+* Forecast electricity → decide battery charge schedule
+* Forecast delivery demand → decide number of couriers
+
+**Key elements:**
+* Cost function (electricity cost)
+* Decision variables (battery charging state)
+* Constraints (battery overall charge)
+
+---
+
+## Connecting CBO with other methods
+
+* **Analytically**
+    * Examples: least squares, ridge regression
+    * Problem: analytical solution might not always exist or computationally expensive
+* **Iterative methods:**
+    * Gradient-based methods (e.g. SGD)
+    * Problem: they require differentiable functions wrt model parameters.
+    * Constraints break that.
+* **Evolutionary algorithms:**
+    * Very flexible, don’t require gradients
+    * Problem: slow for our purposes
+
+---
+
+## Constraint-based optimization solvers
+
+* **Linear Programming**
+    * Optimize a cost function linear wrt decision variables
+    * Subject to linear constraints
+* **Nonlinear Programming:**
+    * Cost function, constraints can be non-linear wrt our variables
+    * Avoid if possible
+* **Mixed-Integer Linear Programming**
+    * Some decision variables and/or constraints are integers
+
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+<script>
+  // Configure MathJax BEFORE creating the slideshow
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$']],
+      skipTags: ['script','noscript','style','pre'] // do NOT skip textarea
+    }
+  });
+
+  // Create the slideshow
+  var slideshow = remark.create();
+
+  // Typeset math after each slide is shown
+  slideshow.on('afterShowSlide', function () {
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+  });
+
+  // Initial typeset
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
+  </body>
+</html>
