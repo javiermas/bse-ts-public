@@ -4,3 +4,4 @@ mlruns
 __pycache__
 .DS_Store
 student_projects
+*.html.bak

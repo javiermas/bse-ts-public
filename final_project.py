@@ -1,7 +1,7 @@
 import marimo
 
-__generated_with = "0.21.1"
-app = marimo.App()
+__generated_with = "0.23.2"
+app = marimo.App(width="full")
 
 
 @app.cell
@@ -19,9 +19,9 @@ def _(mo):
     ## Your brief
     You have just joined **Glovo** as someone who owns **demand forecasting** for local delivery. The ops lead pulls you aside: each city runs on **hourly slots**. For every hour they must decide roughly **how many couriers** to have on the road—and that headcount should follow **how many orders** they expect in that hour. Schedule **too many** riders and you burn payroll; **too few** and deliveries slip, restaurants complain, and customers churn.
 
-    Until now the team has patched it together with **spreadsheets and gut feel**: looking at last week, nudging numbers up or down before each wave of planning. That worked when there were fewer cities and calmer growth. It does not scale. Ops is blunt: *“We need a number we can defend for every hour of the week—not a vibe.”*
+    Until now the team has patched it together with **spreadsheets and gut feel**: looking at last week, nudging numbers up or down before each wave of planning. That worked when there were fewer cities and calmer growth. It does not scale. Ops is blunt: *“We need a number we can defend for every hour of the week”*
 
-    Your first deliverable is narrow but real: for **one city** (the dataset is already a single market), produce **trusted hourly order forecasts** that they could plug into staffing. You are not building the full rostering product yet—you are giving them the **demand curve** the product will sit on top of.
+    Your first deliverable: for **one city** (the dataset is already a single market), produce **trusted hourly order forecasts** that they could plug into staffing. You are not building the full rostering product yet—you are giving them the **demand curve** the product will sit on top of.
 
     ## What you must predict
     - **Target:** number of orders per hour (the `orders` column in the training file).
@@ -64,8 +64,28 @@ def _(mo):
     return
 
 
-@app.cell
-def _():
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Grading criteria
+
+    ### EDA
+    - Identifies and describes the main patterns in the data.
+    - Explains how those findings shape the modelling choices.
+
+    ### Modelling
+    - Trains a **naive baseline**.
+    - Trains **at least two additional model families** beyond the baseline.
+    - Applies **correct time-series validation**, simulating the production scenario.
+    - Selects and justifies a champion model.
+
+    ### Forecast performance
+    - Graded on the **SMAPE** of the submitted CSV against the held-out week.
+
+    ### Code and explanation
+    - The notebook tells a clear story: EDA → modelling decisions → results → conclusion.
+    - Code is readable and does not require the reader to guess what a cell does.
+    """)
     return
 
 

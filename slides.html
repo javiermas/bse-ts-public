@@ -8,27 +8,86 @@
       @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
       @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
-      body { font-family: 'Droid Serif'; }
-      h1, h2, h3 {
-        font-family: 'Yanone Kaffeesatz';
-        font-weight: normal;
+      body {
+        font-family: 'Droid Serif', Georgia, serif;
+        -webkit-font-smoothing: antialiased;
       }
-      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
-      
-      /* Two-column layout classes */
+
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz', 'Segoe UI', sans-serif;
+        font-weight: normal;
+        line-height: 1.15;
+      }
+
+      .remark-slide-content h1 {
+        font-size: 2.35em;
+        margin: 0 0 0.45em;
+      }
+      .remark-slide-content h2 {
+        font-size: 1.82em;
+        margin: 0 0 0.55em;
+      }
+      .remark-slide-content h3 {
+        font-size: 1.4em;
+        margin: 0 0 0.5em;
+      }
+
+      .remark-slide-content {
+        padding: 3.5rem 5.5rem 3.75rem;
+        font-size: 24px;
+        line-height: 1.5;
+        letter-spacing: 0.01em;
+      }
+
+      .remark-slide-content > *:first-child {
+        margin-top: 0;
+      }
+
+      .remark-slide-content > *:last-child {
+        margin-bottom: 0;
+      }
+
+      .remark-slide-content p {
+        margin: 0.45em 0;
+      }
+
+      .remark-slide-content ul,
+      .remark-slide-content ol {
+        margin: 0.35em 0 0.65em;
+        padding-left: 1.15em;
+      }
+
+      .remark-slide-content li {
+        margin: 0.3em 0;
+        padding-left: 0.15em;
+      }
+
+      .remark-slide-content li > ul,
+      .remark-slide-content li > ol {
+        margin-top: 0.35em;
+        margin-bottom: 0.25em;
+      }
+
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono', monospace; }
+      .remark-inline-code {
+        font-size: 0.92em;
+        padding: 0.05em 0.2em;
+      }
+
       .pull-left {
         float: left;
         width: 47%;
+        margin-bottom: 0.75em;
       }
       .pull-right {
         float: right;
         width: 47%;
+        margin-bottom: 0.75em;
       }
       .pull-right ~ p {
         clear: both;
       }
-      
-      /* Inverse slide styling */
+
       .inverse {
         background: #272822;
         color: #777872;
@@ -36,60 +95,121 @@
       }
       .inverse h1, .inverse h2 {
         color: #f3f3f3;
-        line-height: 0.8em;
+        line-height: 1.12;
       }
-      
-      /* Image handling */
+
       img {
         max-width: 100%;
         display: block;
-        margin: 0 auto;
+        margin: 0.6em auto;
       }
-      
-      /* Blockquote styling */
+
+      .fit-slide img, img.fit-slide {
+        max-height: 65vh;
+        width: auto;
+      }
+
       blockquote {
         border-left: 0.3em solid #ccc;
-        padding-left: 1em;
+        margin: 0.55em 0;
+        padding: 0.35em 0 0.35em 1em;
         color: #555;
+      }
+
+      .remark-slide-content table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 0.6em 0;
+        font-size: 0.92em;
+      }
+      .remark-slide-content th,
+      .remark-slide-content td {
+        border: 1px solid #ccc;
+        padding: 0.35em 0.65em;
+        text-align: left;
+        vertical-align: top;
+      }
+      .remark-slide-content th {
+        background: #f0f0f0;
+        font-weight: bold;
+      }
+      .remark-slide-content tr:nth-child(even) td {
+        background: #fafafa;
       }
     </style>
   </head>
   <body>
     <textarea id="source">
 
-name: inverse
 layout: true
-class: center, middle, inverse
+class: center, middle
 ---
 
-# Previous knowledge and student surveys
+# Intelligent data development
 
-Please fill the students surveys at the end of the course!
-
----
-
-# Time series forecasting and optimization
-
-.left[
-### About me
-**Msc Data Science at BSE**
-Data at:
-* Telefonica - Koa Health
-* Glovo
-* Kannact Health
-* Sixt
-]
+Time series forecasting and optimization
 
 ---
 layout: false
 
+# About me
+
+* **Msc Data Science at BSE**
+
+* Data at:
+  * Telefonica - Koa Health
+  * Glovo
+  * Kannact Health
+  * Sixt
+
+If you have any questions, feel free to ask!
+javier.mas93@gmail.com
+
+
+---
+
 ## Learning objectives
 
-* Theoretical understanding of time series problems
-* Methods to analyze and visualize time series
-* Methods to forecast time series
-* Constraint-based optimization
-* Project: forecasting sales
+* **Time-series**
+  * Theoretical understanding of time series problems
+  * Methods to analyze and visualize time series
+  * Methods to forecast time series
+* **Constraint-based optimization**
+* **Software development**
+  * Clean code
+  * Unit-tests
+  * Cloud deployment
+  * AI-assisted development
+* **Project: forecasting sales**
+
+---
+
+## Learning objectives
+
+.fit-slide[
+![Courier optimization](figures/courier-demand-optimization-flowchart.png)
+]
+
+---
+
+## Learning objectives
+
+.fit-slide[
+![Orders vs expected intraday](figures/orders-vs-expected-intraday.png)
+]
+
+---
+
+## Evaluation
+
+Javier: 50%
+* 30% Final project - teams
+  * Grading criteria in the instructions.   
+* 20% 5 in-class exercises - individual
+  * Binary grade: presented or not.
+  * Extra points for presenting the solution.
+
+Laura: 50%
 
 ---
 
@@ -98,128 +218,44 @@ layout: false
 * Forecasting psychotic episodes at Koa
 * Measuring impact at Kannact
 * Selecting the optimal number of couriers at Glovo
+* Dynamic pricing at Sixt
 
 ---
 
 ## What makes time series data different?
 
-Let’s walk through an example: predicting height vs predicting student enrollment.
+Let’s walk through an example: predicting student height vs predicting the average height over time
+
+???
+Contrast **many unrelated draws** (height across people today) vs **one evolving system** (average height path driven by a trend).
+For height, taking an average can be a good predictor. This is because the sample average is an unbiased estimator of the population mean.
+For time series applications, taking an average is not a good predictor. This is because the observations are not i.i.d.:
+the distribution of the average height is ever-changing.
 
 ---
 
-## Stationarity
 
-When forecasting, we model a conditional distribution:
+## Time Series Patterns
 
-$$p(y \mid X; \theta)$$
+.fit-slide[
+![AirPassengers](figures/air-passengers.png)
+]
 
-For a **specific value** $X = x$, the conditional mean is:
-
-$$E[y \mid X = x; \theta]$$
-
-If we observe $y_t$ multiple times when $X_t = x$, we can estimate this with the sample average:
-
-$$
-\frac{1}{n\_x} \sum\_{t}^{} y\_t \quad \text{where } X\_t = x
-$$
-
-If $p(y \mid X; \theta)$ is stationary, then the sample average converges to the true conditional expectation as $n_x$ grows (Law of Large Numbers applies).
+???
+What patterns do you see?
 
 ---
 
-## Stationarity and forecasting
 
-* A stationary conditional distribution means its properties don't change over time
-* The sample average $\frac{1}{n}\sum_{t=1}^{n} y_t$ is then an **unbiased estimator** of $E[y \mid X; \theta]$
-* Law of Large Numbers + Central Limit Theorem apply → confidence intervals and hypothesis tests are valid
-* **Parameter estimates from OLS are unbiased and consistent**
+## Time Series Patterns
 
-**Without stationarity:**
-* The conditional mean might drift over time → sample average ≠ true expectation
-* Standard errors are incorrect → confidence intervals are unreliable
-* You might think a pattern is significant when it's just due to the trend
+.fit-slide[
+![SP500](figures/sp500-market-summary.png)
+]
 
+???
+What patterns do you see?
 
----
-
-## Stationarity
-
-A stationary time series is a stochastic process whose statistical properties (like mean, variance, autocorrelation) are constant over time. That is, **a time series in a steady state**.
-
-* **Weak:** mean and variance don’t change over time
-* **Strong:** entire distribution doesn’t change over time
-* Closely related to the IID concept
-* The sample mean (average) and variance are good (unbiased) estimators of the distribution mean and variance.
-
-
----
-
-## Stationarity: technical overview
-
-* Non-stationary time series have patterns that can be modelled.
-* Do seasonalities make a TS non-stationary?
-* Example of non-stationary TS:
-    ![Non-stationary TS Example](url_placeholder)
-
----
-
-## Stationary time series (continued)
-
-* Stationary time series have no predictable patterns in the long term.
-* Perfect example: white noise.
-* Their values don’t depend on time.
-* Example of +/- stationary TS:
-    ![Stationary TS Example](url_placeholder)
-* Some difference in volatility
-
----
-
-## Why does stationarity matter?
-
-**The AutoRegressive (AR) model**
-
-The present is a function of the past:
-
-$$X_t = \phi X_{t-1} + \epsilon_t$$
-
-* Key assumption: the phi coefficient has to be between -1 and 1.
-* What does this mean?
-* Just like a linear regression, could be solved using OLS
-
----
-
-## AR(1) Example
-
-* AR(1) to predict beer production
-
-![Beer Production Prediction](url_placeholder)
-
----
-
-## Why does stationarity matter?
-
-**Variance changes over time**
-
-* Law of large numbers (LLN) and central limit theorem (CLT) rely on the process being stationary.
-* Many traditional statistical time series models rely on LLN/CLT.
-* **Think of OLS’s assumptions:**
-    * The expected value of the error is 0 (unbiased estimators).
-    * The variance of the error is constant over time.
-    * Errors are uncorrelated to each other.
-
----
-
-## Stationarity and Decision Trees
-
-* Decision-trees are unable to generate predictions outside of the range of values of your target
-
----
-
-## Is stationarity good or bad?
-
-* Non-stationary processes can usually be made stationary with a few transformations!
-* We like non-stationary processes: there might be patterns we can predict
-* However, trends cannot be handled directly by the main models, so they need to be dealt with.
 
 ---
 
@@ -234,16 +270,75 @@ $$X_t = \phi X_{t-1} + \epsilon_t$$
 * **Outliers:** could be considered seasonality or cycles
 
 ---
-
-## Seasonality
-
-* Not to get confused with natural ‘seasons’.
-* Seasons can be a seasonality (e.g. company reports YoY instead of QoQ).
-* **Definition:** Seasonality is any recurrent pattern with a fixed start and end.
+layout: true
+class: center, middle
 
 ---
 
-## Forecasting time series: Workflow
+# Time series models
+
+---
+layout: false
+
+
+## Time series models
+
+Every forecasting model answers the same question: **given what I know up to time $t$, what is my best guess for $y_{t+h}$?**
+
+The models differ in *what they use* and *how they combine it*:
+
+| Model family | What it uses |
+|---|---|
+| Naive | Simple heuristics (last value, mean) |
+| Linear regression | Features you engineer |
+| ARIMA | Past values and past errors |
+| Exponential smoothing | Weighted recent observations, adaptively |
+| Boosting / trees | Features, non-linearly |
+| Deep learning | Sequences, end-to-end |
+
+---
+layout: true
+class: center, middle
+
+---
+
+# Naive heuristics
+
+---
+layout: false
+
+## Naive heuristics
+
+**Last value**
+
+<div>$$\hat{y}_{t+1|t} = y_t $$</div>
+
+This is the **random walk** forecast. It is optimal when the series has no predictable component beyond its current level — increments are independent and identically distributed.
+
+**Sample mean**
+
+<div>$$\hat{y}_{t+h|t} = \bar{y} = \frac{1}{T} \sum_{t=1}^{T} y_t $$</div>
+
+Works when the mean doesn't change significantly within your forecast horizon.
+
+???
+The mean is the maximum-likelihood forecast for a white-noise series. 
+
+---
+
+## Naive heuristics
+
+- Both the last value and historical mean can be made seasonal by taking *groupby* versions of it (e.g. mean by hour of the day) 
+- In any real ML application, naive heuristics should always go your first go-to model. The baseline you try to beat with more complex models.
+
+???
+White board example of Glovo demand with 2 days of data, students are asked to predict the next day.
+
+---
+
+## First exercise: resource planning for the grid
+
+Forecasting time series workflow
 
 1.  **Exploratory Data Analysis (EDA):**
     * Helps define the problem
@@ -253,178 +348,625 @@ $$X_t = \phi X_{t-1} + \epsilon_t$$
 3.  **Modelling and validation**
 4.  **Deployment**
 
----
+Open the exercise at:
 
-## Coding time…
-
-* Make your life easy: resample at a less-granular resolution whenever possible
-* Be careful with explicit and implicit missing data, outliers
-* Make use of python libraries: resample, asfreq, merge_asof…
-* Try to understand the seasonalities and trend in your TS
-* Given this, what model parameterizations will perform best?
+https://github.com/javiermas/bse-ts-public/blob/main/exercises/01_resource_planning.py
 
 ---
-
-## Final remarks: EDA for time series problems
-
-* Is the trend linear, quadratic or exponential?
-* Always keep in mind how many steps ahead you’ll have to predict
+layout: true
+class: center, middle
 
 ---
 
-## Time series problems
+# Linear regression
 
-**When generating features for boosting methods look at:**
-* TS characteristics (descriptive stats)
-* Domain-specific features
+---
+layout: false
 
-**Model iteration:**
+
+## Linear regression on time series
+
+Auto-regressive model:
+<div>$$y_t = c + \phi_1 y_{t-1} + \varepsilon_t$$</div>
+
+Deterministic trend:
+<div>$$y_t = c + \beta t + \phi_1 y_{t-1} + \varepsilon_t$$</div>
+
+Seasonal dummies:
+<div>$$y_t = c + \sum_{s=1}^{S-1} \alpha_s D_{s,t} + \phi_1 y_{t-1} + \varepsilon_t$$</div>
+
+
+???
+The constant $c$ sets the **unconditional mean**. For a stationary AR(1): $E[y_t] = \dfrac{c}{1 - \phi_1}$.
+
+Without it, the model forces mean-reversion to zero—fine if your series is already mean-zero, wrong otherwise.
+
+Use when: the series fluctuates around a stable non-zero level (e.g. temperature anomalies, capacity utilization).
+
+---
+
+## Second exercise: forecasting financial data
+
+Open the exercise at:
+
+https://github.com/javiermas/bse-ts-public/blob/main/exercises/02_bayes_capital.py
+
+---
+## Why OLS gives wrong answers on autoregressive models
+
+OLS requires regressors to be uncorrelated with the error. 
+For: 
+<div>$$y_t = c + \phi_1 y_{t-1} + \varepsilon_t $$</div>
+OLS requires: 
+<div>$$\text{Cov}(y_{t-1},\, \varepsilon_t) = 0$$</div>
+
+This fails when errors are autocorrelated. 
+
+---
+
+## Why OLS gives wrong answers on autoregressive models
+
+Example: Glovo orders spike at 21:00 (Spanish dinner time) then dip at 21:05.
+
+.fit-slide[
+![Orders vs expected intraday](figures/orders-vs-expected-intraday.png)
+]
+
+* **Incorrect coefficient estimates** — AR is used to capture one-step shocks, which leads to biased parameters.
+* **Incorrect confidence intervals** — OLS CIs assume i.i.d. errors; 
+with autocorrelated errors they are too narrow.
+
+
+---
+
+## AR(1) vs MA(1): persistence vs one-step echo
+
+.fit-slide[
+![AR(1) vs MA(1)](figures/ar1-vs-ma1.png)
+]
+
+???
+AR(1): the series has long memory — a shock today is still visible many steps later, and the ACF reflects that with a slow geometric decay. MA(1): the series forgets immediately after one step. The ACF has exactly one non-zero spike and then nothing, because after lag 1 there are no shared shocks between $y_t$ and $y_{t-h}$.
+
+---
+
+layout: true
+class: center, middle
+
+---
+
+# ARIMA
+
+---
+layout: false
+
+## ARIMA($p$, $d$, $q$) specification
+
+Auto-regressive (AR) Integrated (I) Moving Average (MA)
+
+Taking ARIMA(1,0,1) - often referred to as an ARMA(1,1) model - as an example:
+
+<div>$$y_t = \alpha + \underbrace{\phi y_{t-1}}_{\text{AR}(1)} + \underbrace{\theta \varepsilon_{t-1}}_{\text{MA}(1)} + \varepsilon_t $$</div>
+
+The d or I parameter represents how many differences are applied to the raw time series before modelling as above (we'll see why this is done soon). For $d=1$:
+
+<div>$$y_t = y^{raw}_t - y^{raw}_{t-1}$$</div>
+
+---
+## ARIMA($p$, $d$, $q$) specification (cont.)
+
+* **$p$** — AR order: lags of $\Delta^d y_t$ included. Requires $|\phi_i| < 1$.
+* **$d$** — Integration order: how many times to difference. Usually 0 or 1.
+* **$q$** — MA order: lags of past errors included. Requires $|\theta_j| < 1$.
+
+Cannot be estimated with OLS because of the MA component. Instead, it's estimated using MLE.
+
+**Important**: the time series we apply an ARMA($p$, $q$) to needs to be *stationary*.
+
+
+---
+
+## Stationarity
+
+A stationary time series is a stochastic process whose statistical properties (like mean, variance, autocorrelation) 
+are constant over time. That is, a time series in a steady state.
+
+---
+
+## Formal definition
+
+**Weak stationarity** — the most relevant:
+
+<div>$$E[y_t] = \mu \quad \text{for all } t$$</div>
+<div>$$\text{Var}(y_t) = \sigma^2 < \infty \quad \text{for all } t$$</div>
+<div>$$\text{Cov}(y_t,\, y_{t-h}) = \gamma(h) \quad \text{(depends on lag } h \text{, not on } t\text{)}$$</div>
+
+Constant mean, constant variance, and autocorrelations that depend only on *how far apart* two observations are—not on *when* they occur.
+
+---
+
+## Formal definition (continued)
+
+**Strong stationarity:** the joint distribution is time-invariant for any collection of time points:
+
+<div>$$(y_{t_1}, \ldots, y_{t_k}) \overset{d}{=} (y_{t_1+h}, \ldots, y_{t_k+h})$$</div>
+
+for all $k$, all $(t_1, \ldots, t_k)$, and all shifts $h$.
+
+---
+
+## Some time-series
+
+![Time-series examples](figures/multiple-time-series-examples.png)
+
+???
+Which of these are stationary?
+
+Taken from Hyndman and Athanasopoulos (2018) "Forecasting: principles and practice".
+
+
+---
+
+## Before fitting anything: a quick visual check
+
+Plot the series and ask three questions:
+
+1. **Does the mean look stable?** — or does it trend up or down?
+2. **Does the variance look stable?** — or does the spread widen over time?
+3. **Are segments from different periods exchangeable?** — could you tell 2021 from 2023 by eye?
+
+"No" $\rightarrow$ non-stationary, an ARMA model will fail if you don't adress it.
+
+Formal tests exist (ADF, KPSS) but visual inspection and domain knowledge is usually preferred.
+
+---
+
+## Why does stationarity matter?
+
+**The AutoRegressive (AR) model**
+
+<div>$$y_t = \alpha + \phi y_{t-1} + \epsilon_t$$</div>
+
+* Key constraint: $|\phi| < 1$. What does this mean?
+
+???
+
+Draw in the whiteboard a linear trend and ask to generate predictions with a specific AR model instance (e.g. phi of 0.99, alpha of 0).
+
+In an ARIMA model, the time series always reverts to the mean (after differentiating), represented by the constant, because of the constraint.
+
+---
+
+## AR(1) forecasts converge to the unconditional mean
+
+.fit-slide[
+![AR(1) mean reversion](figures/ar1-mean-reversion.png)
+]
+
+Both forecasts collapse to $\mu = c\,/\,(1-\phi_1) = 10$, whatever the starting value. The gap $(y_0 - \mu)$ shrinks by factor $\phi_1 = 0.8$ each step.
+
+---
+
+## Dealing with stationarity: trends
+
+![Trend transformations](figures/trend-transformations.png)
+
+---
+
+## Third exercise: forecasting CO2
+
+Open the exercise at:
+
+https://github.com/javiermas/bse-ts-public/blob/main/exercises/03_world_co2.py
+
+---
+
+## Evaluating time-series models
+
+
+![Evaluation](figures/oos-validation.png)
+
+---
+
+## Forecast error metrics
+
+With truth $y_t$ and point forecast $\widehat y_t$ over a test window of $n$ steps:
+
+<div>$$\text{MAE} = \frac{1}{n}\sum|y_t - \hat y_t| \qquad \text{RMSE} = \left(\frac{1}{n}\sum(y_t - \hat y_t)^2\right)^{\!1/2}$$</div>
+
+* In the same units as $y$. 
+* **RMSE** penalises large errors more (squares before averaging). 
+* Neither works across series of different magnitudes.
+
+
+???
+Root version used for reporting purposes.
+
+---
+
+## Forecast error metrics continued
+
+With truth $y_t$ and point forecast $\widehat y_t$ over a test window of $n$ steps:
+
+<div>$$\text{MAPE} = \frac{1}{n}\sum\left|\frac{y_t - \widehat y_t}{y_t}\right| 
+  \qquad \text{SMAPE} = \frac{1}{n}\sum\frac{|y_t - \widehat y_t|}{(|y_t|+|\widehat y_t|)/2}$$</div>
+
+* **MAPE** — scale-free, easy to report ("6% off on average"). Breaks when $y_t \approx 0$, and systematically rewards **under-forecasting**.
+* **SMAPE** — bounded in $[0, 2]$, handles near-zeros better. Still has an under-forecasting bias; less interpretable than MAPE.
+* **MASE** — scales MAE by the in-sample MAE of a seasonal-naïve forecast. Fully scale-free, no zero problems, the safest choice when comparing across many series.
+
+???
+Under-forecasting bias in MAPE: the denominator is the actual value y_t, so errors on low-demand periods are amplified — the optimiser learns to sit slightly below the mean to minimise total loss.
+
+MASE denominator: average absolute error of the seasonal-naïve forecast on the training set (lag-s differences), where s is the seasonal period. If MASE < 1 your model beats seasonal naïve; if MASE > 1 you should just use seasonal naïve.
+
+---
+## Picking a champion
+
+Backtesting gives you a **performance matrix**: one error per model per backtest window (e.g. one row per week). Selecting a champion means aggregating that matrix into a single ranking.
+
+| Aggregation | Implicit assumption |
+|---|---|
+| Mean across all windows | Model performance is stationary |
+| Exponentially weighted mean | Recent windows predict future performance better |
+| Best performer in the same period last year | Strong seasonality dominates; August 2024 predicts August 2025 |
+
+**Treat it as a predictive task:** given past errors, which model will have the lowest error next period?
+
+
+???
+EWM: downweight old windows using a decay factor. The implicit assumption is that the series has changed — a model that was best 18 months ago may no longer be.
+Seasonal selector: requires at least 2–3 years of backtest history to have meaningful same-period comparisons. On shorter histories, the variance dominates and you're just picking noise.
+These strategies can be combined: use EWM in normal periods, switch to seasonal selector when entering a known anomalous period.
+Also worth noting: with enough models and windows, champion selection is itself a modelling problem — you can train a meta-learner on past performance features to predict next-period rank. This is the entry point to ensembles.
+
+---
+
+## Model iteration
+
 * Performance >> statistical tests
 * Beware of data leaks
 * Check performance on every iteration, ‘too good to be true’ performance.
-    * Common causes: rolling functions on the target, shifts, incorrect/no use of group by
+
+---
+layout: true
+class: center, middle
 
 ---
 
-## Common forecasting models
+# SARIMA
 
-* **Naive models**
-    * Mean/median
-    * Last point
-* **ARIMA**
-* **Boosting methods**
-* **Deep learning methods**
+---
+layout: false
+
+## SARIMA(p,d,q)(P,D,Q)[S] specification
+
+Seasonal ARIMA — same structure as ARIMA but with an additional seasonal layer.
+
+Taking SARIMA(1,0,0)(1,0,0)[24] as an example:
+
+<div>$$y_t = \underbrace{\phi\, y_{t-1}}_{\text{AR}(1)} + \underbrace{\Phi\, y_{t-24}}_{\text{SAR}(1)} + \underbrace{-\phi\Phi\, y_{t-25}}_{\text{interaction}} + \varepsilon_t$$</div>
+
+The seasonal difference ($D=1$, $S=24$) removes a drifting seasonal pattern:
+
+<div>$$y_t = y_t^{raw} - y_{t-24}^{raw}$$</div>
 
 ---
 
-## Naive models
+## SARIMA(p,d,q)(P,D,Q)[S] specification (cont.)
 
-* Based on heuristics: no learning
-* They can be good as baselines.
+* **p, d, q** — same as ARIMA: short-run AR, differencing, MA.
+* **P** — Seasonal AR order: lags $y_{t-kS}$ for k = 1, ..., P
+* **D** — Seasonal differencing: removes a drifting seasonal pattern. Usually 0 or 1.
+* **Q** — Seasonal MA order: past errors up to $\varepsilon_{t-kS}$ for k = 1, ..., Q
+* **S** — Seasonal period: 24 (hourly), 7 (daily), 12 (monthly).
 
-.pull-left[
-**Pros**
-* They’re computationally cheap and require no maintenance.
-* Very stable.
-]
+???
+The interaction term -phi*Phi*y_{t-25} arises from multiplying out the AR and SAR polynomials.
+It's not a free parameter — it's constrained to equal -phi*Phi. This is what makes SARIMA
+parsimonious: a few parameters generate a rich lag structure.
 
-.pull-right[
-**Cons**
-* They don’t exploit the data to its full extent.
-* They often require processing the data to provide decent performance.
-]
+Practical defaults: SARIMA(1,1,1)(1,1,1)[S] is often a good starting point.
+D=1 when the seasonal pattern visibly drifts year over year; D=0 when it's stable.
 
----
-
-## ARIMA models
-
-**Three components:**
-* **AR:** autoregressive
-* **I:** integration
-* **MA:** moving average
-
-.pull-left[
-**Pros**
-* Explainability
-* Few parameters
-]
-
-.pull-right[
-**Cons**
-* Rigid: linear combinations
-* Bad for incorporating external factors
-]
-
-*Python’s implementation available.*
 
 ---
 
-## SARIMA models
+## Using SARIMA for seasonal time-series
 
-.pull-left[
-**Pros**
-* Same as ARIMA
-* Incorporate seasonalities into your model explicitly
-* Resulting model can be sparser
-]
+![Seasonal slicing](figures/seasonal-slicing.png)
 
-.pull-right[
-**Cons**
-* Same as ARIMA
-* Only allows for 1 seasonality
-]
+---
+layout: true
+class: center, middle
 
 ---
 
-## Boosting methods
+# Exponential smoothing and the Theta model
 
-* Family of methods: train iteratively a number of simple models (weak learners) where the errors at one iteration are priced into the next iteration.
-* A weighted ensemble of those models is used as a final prediction.
+---
+layout: false
 
-.pull-left[
-**Pros**
-* Flexible → performance
-* External features improve performance
-]
+## Exponential smoothing
 
-.pull-right[
-**Cons**
-* Need lots of tuning (although CatBoost works great out of the box)
-* Not very interpretable (although SHAP helps)
-]
+Instead of averaging all past observations equally, weight them so that **recent observations matter more**.
+
+**Simple exponential smoothing (SES):**
+
+<div>$$\hat{y}_{t+1|t} = \alpha\, y_t + (1-\alpha)\, \hat{y}_{t|t-1}, \qquad \alpha \in (0, 1)$$</div>
+
+Expanding the recursion:
+
+<div>$$\hat{y}_{t+1|t} = \alpha \sum_{k=0}^{\infty} (1-\alpha)^k\, y_{t-k}$$</div>
+
+Weight on $y_{t-k}$ decays geometrically — older observations contribute less.
+
+???
+SES is good for stationary-ish data with no trend or seasonality.
 
 ---
 
-## Constraint-based optimization
+## The Theta model
+
+The theta model was formulated in 2000, when it wont the M3 competition (Asimakis & Nikolopoulos (2000)). 
+**Hyndman & Billah (2003)** showed it model is equivalent to **SES with drift**:
+
+<div>$$\hat{y}_{t+h} = \hat{y}_{t+h}^{\text{SES}} + \frac{\hat{b}}{2}\cdot h$$</div>
+
+where $\hat{b}$ is the OLS slope of $y_t$ on $t$. SES tracks the recent level; the drift corrects for the long-run direction.
+It works really well, but you need to remove the seasonal component from the TS first.
+
+---
+
+## Fourth exercise: forecasting sales of antihistamines
+
+Open the exercise at:
+
+https://github.com/javiermas/bse-ts-public/blob/main/exercises/04_retail_pulse.py
+
+
+---
+layout: true
+class: center, middle
+
+---
+
+# Boosting methods for time series
+
+---
+layout: false
+
+## Gradient boosting sees a table, not a series
+
+Gradient boosting has no notion of time. It sees rows of $(x, y)$ pairs and fits residuals. 
+The entire job of the practitioner is building the feature matrix.
+
+<div>$$\widehat{y}_{t+h} = f\!\left(\underbrace{y_{t},\, y_{t-1}}_{\text{lag features}},\
+  \underbrace{\bar{y}_t,\, \sigma_t}_{\text{rolling features}},\
+  \underbrace{h_t,\, d_t}_{\text{calendar}},\ \underbrace{x_t}_{\text{exogenous}}\right)$$</div>
+
+---
+
+## Requirements for Gradient boosting for TS 
+
+* **Trends also matter** — trees predict by averaging leaf values
+and cannot extrapolate beyond the training range. Detrend before fitting.
+* **Seasonality is adressed via features** — encode it as calendar features (hour of day, day of week).
+Seasonal differencing might be necessary.
+* **Horizon $h$** — only lags $\geq h$ are valid at prediction time to avoid leakage.
+
+???
+Explain the horizon and lags issue. Data leaking is very dangerous with boosting.
+
+---
+layout: true
+class: center, middle
+
+---
+
+# Neural Networks
+
+---
+layout: false
+
+## Recurrent Neural Networks (RNNs)
+
+RNNs process sequences by maintaining a **hidden state** $h_t$ that summarises everything seen so far:
+
+<svg viewBox="0 0 720 195" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;display:block;margin:0.4em auto;font-family:sans-serif;">
+  <defs>
+    <marker id="rnn-arr" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0 0,7 2.5,0 5" fill="#555"/>
+    </marker>
+    <marker id="rnn-arr-h" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0 0,7 2.5,0 5" fill="#D55E00"/>
+    </marker>
+  </defs>
+  <!-- LEFT: Standard ANN -->
+  <text x="143" y="16" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">Standard ANN</text>
+  <g stroke="#ccc" stroke-width="1.3">
+    <line x1="67" y1="60"  x2="138" y2="60"/><line x1="67" y1="60"  x2="138" y2="100"/><line x1="67" y1="60"  x2="138" y2="140"/>
+    <line x1="67" y1="100" x2="138" y2="60"/><line x1="67" y1="100" x2="138" y2="100"/><line x1="67" y1="100" x2="138" y2="140"/>
+    <line x1="67" y1="140" x2="138" y2="60"/><line x1="67" y1="140" x2="138" y2="100"/><line x1="67" y1="140" x2="138" y2="140"/>
+    <line x1="162" y1="60"  x2="223" y2="100"/><line x1="162" y1="100" x2="223" y2="100"/><line x1="162" y1="140" x2="223" y2="100"/>
+  </g>
+  <circle cx="55"  cy="60"  r="12" fill="#4C72B0"/><circle cx="55"  cy="100" r="12" fill="#4C72B0"/><circle cx="55"  cy="140" r="12" fill="#4C72B0"/>
+  <circle cx="150" cy="60"  r="12" fill="#999"/>   <circle cx="150" cy="100" r="12" fill="#999"/>   <circle cx="150" cy="140" r="12" fill="#999"/>
+  <circle cx="235" cy="100" r="12" fill="#009E73"/>
+  <text x="29"  y="64"  text-anchor="end" font-size="12" fill="#333">x₁</text>
+  <text x="29"  y="104" text-anchor="end" font-size="12" fill="#333">x₂</text>
+  <text x="29"  y="144" text-anchor="end" font-size="12" fill="#333">x₃</text>
+  <text x="252" y="104" font-size="12" fill="#333">ŷ</text>
+  <text x="143" y="182" text-anchor="middle" font-size="11" fill="#888" font-style="italic">inputs are independent</text>
+  <!-- DIVIDER -->
+  <line x1="280" y1="10" x2="280" y2="190" stroke="#ddd" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <!-- RIGHT: RNN unrolled -->
+  <text x="508" y="16" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">RNN (unrolled)</text>
+  <line x1="368" y1="48" x2="368" y2="82" stroke="#555" stroke-width="1.5" marker-end="url(#rnn-arr)"/>
+  <line x1="498" y1="48" x2="498" y2="82" stroke="#555" stroke-width="1.5" marker-end="url(#rnn-arr)"/>
+  <line x1="628" y1="48" x2="628" y2="82" stroke="#555" stroke-width="1.5" marker-end="url(#rnn-arr)"/>
+  <text x="368" y="40" text-anchor="middle" font-size="12" fill="#333">x<tspan dy="4" font-size="9">t−1</tspan></text>
+  <text x="498" y="40" text-anchor="middle" font-size="12" fill="#333">x<tspan dy="4" font-size="9">t</tspan></text>
+  <text x="628" y="40" text-anchor="middle" font-size="12" fill="#333">x<tspan dy="4" font-size="9">t+1</tspan></text>
+  <rect x="338" y="83" width="60" height="32" rx="5" fill="#4C72B0" opacity="0.82"/>
+  <rect x="468" y="83" width="60" height="32" rx="5" fill="#4C72B0" opacity="0.82"/>
+  <rect x="598" y="83" width="60" height="32" rx="5" fill="#4C72B0" opacity="0.82"/>
+  <text x="368" y="104" text-anchor="middle" font-size="12" fill="white" font-weight="bold">W</text>
+  <text x="498" y="104" text-anchor="middle" font-size="12" fill="white" font-weight="bold">W</text>
+  <text x="628" y="104" text-anchor="middle" font-size="12" fill="white" font-weight="bold">W</text>
+  <line x1="302" y1="99" x2="335" y2="99" stroke="#D55E00" stroke-width="2" marker-end="url(#rnn-arr-h)"/>
+  <text x="300" y="95" text-anchor="end" font-size="11" fill="#D55E00">h₀</text>
+  <line x1="399" y1="99" x2="466" y2="99" stroke="#D55E00" stroke-width="2" marker-end="url(#rnn-arr-h)"/>
+  <line x1="529" y1="99" x2="596" y2="99" stroke="#D55E00" stroke-width="2" marker-end="url(#rnn-arr-h)"/>
+  <line x1="659" y1="99" x2="695" y2="99" stroke="#D55E00" stroke-width="2" marker-end="url(#rnn-arr-h)"/>
+  <text x="432" y="88" text-anchor="middle" font-size="11" fill="#D55E00">h<tspan dy="4" font-size="9">t−1</tspan></text>
+  <text x="562" y="88" text-anchor="middle" font-size="11" fill="#D55E00">h<tspan dy="4" font-size="9">t</tspan></text>
+  <text x="706" y="103" font-size="12" fill="#333">ŷ</text>
+  <text x="508" y="182" text-anchor="middle" font-size="11" fill="#888" font-style="italic">same weights W at every step</text>
+</svg>
+
+<div>$$h_t = \sigma(W_h\, h_{t-1} + W_x\, x_t + b), \qquad \hat{y}_t = W_y\, h_t$$</div>
+
+The same weights are reused at every step. Each cell holds two matrices: $W_x \in \mathbb{R}^{d \times p}$ (input → hidden) and $W_h \in \mathbb{R}^{d \times d}$ (hidden → hidden), where $p$ is the number of input features and $d$ is the hidden size (a hyperparameter).
+
+---
+
+## Limitations of BPTT
+
+**Vanishing gradients.** The gradient from $k$ steps back scales as $\|W_h\|^k$. For $\|W_h\| < 1$ it decays to zero — $W_h$ receives no update from distant steps.
+
+$h_t$ sees the entire history $x_1, \ldots, x_t$ in the forward pass. But $W_h$ was never trained to encode long-range dependencies because the gradient never arrived. The network *sees* the distant past; it never *learns* from it.
+
+In practice, dependencies beyond ~20 steps are not learned.
+
+
+???
+The vanishing gradient is not a training trick failure — it is structural.
+The same weight matrix applied repeatedly either contracts or expands the gradient signal geometrically.
+Clipping handles explosion; nothing handles vanishing except architecture changes.
+
+---
+
+## Other recurrent architectures
+
+* **LSTMs** and **GRUs** try to solve the vanishing gradient problem, but in practice
+they also struggle to learn long-range dependencies.
+* GRUs are simpler, easier to train than LSTMs, but both still require
+**careful training and tuning**, can often have issues with exploding gradients.
+* They can be useful because of their **flexibility**, but on standard TS tasks
+they rarely outperform traditional methods.
+* More recently, **State Space Models (SSMs)** have shown promising results in 
+NLP tasks and remain an active area of research.
+
+---
+
+## Attention and Transformers
+
+The core problem with RNNs and LSTMs: connecting position $t$ to position $t-k$ requires the gradient to travel through $k$ steps. **Attention** removes that path — it directly computes a weighted relationship between any two positions in one step.
+
+For each position $t$, attention produces a query $q_t$; for every other position $s$ a key $k_s$ and value $v_s$:
+
+<div>$$\text{Attention}(q_t, K, V) = \sum_s \underbrace{\frac{\exp(q_t \cdot k_s / \sqrt{d})}{\sum_{s'} \exp(q_t \cdot k_{s'} / \sqrt{d})}}_{\text{how much to attend to } s} \cdot v_s$$</div>
+
+**The cost:** attention is $O(T^2)$ — every position attends to every other.
+
+???
+The $\sqrt{d}$ scaling prevents dot products from growing large and pushing softmax into saturation.
+
+Key intuition: RNNs compress all history into a fixed-size vector — a bottleneck. Attention has no bottleneck; it reads the full sequence at once and learns which parts to focus on.
+
+PatchTST treats patches of consecutive time steps as tokens (like ViT does for image patches). This is the most practically relevant transformer architecture for univariate TS today.
+
+The output is a weighted average of all values — positions similar to the query get higher weight. No recurrence, no gradient path between positions.
+
+**For time series:** the model can directly learn "May this year looks like May last year" without the gradient travelling 12 steps. This is why transformers handle seasonal patterns much better than LSTMs.
+
+---
+
+## Attention: the linear algebra
+
+Given a sequence of $T$ inputs, stack them into $X \in \mathbb{R}^{T \times d}$. Three learned projection matrices produce queries, keys, and values:
+
+<div>$$\begin{aligned} Q &= X W_Q \\ K &= X W_K \\ V &= X W_V \end{aligned} \qquad W_Q, W_K, W_V \in \mathbb{R}^{d \times d_k}$$</div>
+
+Each row of $Q$, $K$, $V$ is one position's query, key, or value vector. The full attention output is then:
+
+<div>$$\text{Attention}(Q, K, V) = \underbrace{\text{softmax}\!\left(\frac{Q K^\top}{\sqrt{d_k}}\right)}_{\text{attention matrix } A \in \mathbb{R}^{T \times T}} V$$</div>
+
+
+???
+$d_k$ is the key/query dimension, often set to $d / \text{num\_heads}$ in multi-head attention.
+
+The $\sqrt{d_k}$ scaling: without it, dot products grow large as $d_k$ increases, pushing softmax into near-zero gradient regions (saturation). Dividing by $\sqrt{d_k}$ keeps the variance of $q \cdot k$ roughly constant regardless of dimension.
+
+Multi-head attention runs $h$ independent attention operations in parallel with smaller $d_k$, then concatenates — each head can attend to different aspects of the sequence simultaneously.
+
+---
+layout: true
+class: center, middle
+
+---
+
+# Contraint-based optimization
+
+---
+layout: false
+
+
+## Constraint-based optimization (CBO)
 
 **Why constraint-based optimization?**
 * Forecasts tell you what might happen
-* Optimization tells you what to do about it
+* CBO helps you automate decisions with those forecasts
 * Common use cases: staffing, routing, inventory, energy, marketing budgets
 
 ---
 
-## From forecasting to decision making
+## Optimisation is always the same problem
 
-* Forecast electricity → decide battery charge schedule
-* Forecast delivery demand → decide number of couriers
+Every method you know is minimising a loss over decision variables:
 
-**Key elements:**
-* Cost function (electricity cost)
-* Decision variables (battery charging state)
-* Constraints (battery overall charge)
+| Method | Decision variables | Loss | Solver |
+|---|---|---|---|
+| Least squares | weights $\beta$ | $\lVert y - X\beta \rVert^2$ | closed form |
+| Neural network | weights $W$ | MSE / cross-entropy | SGD |
+| CBO | staff, inventory, schedules | cost function | LP / MILP / NLP solver |
 
----
+What changes is the *structure*: continuous vs integer variables, smooth vs non-smooth loss, unconstrained vs hard constraints.
 
-## Connecting CBO with other methods
-
-* **Analytically**
-    * Examples: least squares, ridge regression
-    * Problem: analytical solution might not always exist or computationally expensive
-* **Iterative methods:**
-    * Gradient-based methods (e.g. SGD)
-    * Problem: they require differentiable functions wrt model parameters.
-    * Constraints break that.
-* **Evolutionary algorithms:**
-    * Very flexible, don’t require gradients
-    * Problem: slow for our purposes
+Gradient-based solvers require a smooth differentiable loss — they break on integer variables and hard constraints. MILP solvers are designed exactly for that case.
 
 ---
 
 ## Constraint-based optimization solvers
 
-* **Linear Programming**
-    * Optimize a cost function linear wrt decision variables
-    * Subject to linear constraints
-* **Nonlinear Programming:**
-    * Cost function, constraints can be non-linear wrt our variables
-    * Avoid if possible
-* **Mixed-Integer Linear Programming**
-    * Some decision variables and/or constraints are integers
+The general form of a CBO problem:
 
-    </textarea>
+<div>$$\begin{aligned} \min_{x} \quad & f(x) \\ \text{subject to} \quad & g_i(x) \leq 0 \\ & h_j(x) = 0 \\ & x \in \mathcal{X} \end{aligned}$$</div>
+
+where $x$ are the decision variables, $f$ is the cost function, $g_i$ are inequality constraints, $h_j$ are equality constraints, and $\mathcal{X}$ encodes variable bounds and integrality.
+
+---
+
+## Constraint-based optimization solvers
+
+What changes across solver families is the structure of $f$, $g_i$, $h_j$, and $\mathcal{X}$:
+
+* **Linear Programming (LP):** $f$ and all constraints linear in $x$, $x \in \mathbb{R}^n$
+* **Mixed-Integer Linear Programming (MILP):** same as LP but some $x_i \in \mathbb{Z}$
+* **Nonlinear Programming (NLP):** $f$ or constraints non-linear — avoid if possible
+
+---
+
+## Exercise: Medistor procurement planning
+
+Open the exercise at:
+
+https://github.com/javiermas/bse-ts-public/blob/main/exercises/05_medistor_procurement.py
+
+</textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_SVG" type="text/javascript"></script>
 
 <script>
   // Configure MathJax BEFORE creating the slideshow
