@@ -19,9 +19,9 @@ def _():
         Path(__file__).parent / "data" / "02_bayes_product.csv",
         index_col="date", parse_dates=True,
     )
-    y = y_df["value"].values
+    y = y_df["value"]
     n_train = len(y) - HORIZON
-    y_train, y_test = y[:n_train], y[n_train:]
+    y_train, y_test = y.iloc[:n_train], y.iloc[n_train:]
     return (
         HORIZON,
         VIZ_OBS,
