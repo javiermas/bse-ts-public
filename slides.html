@@ -385,6 +385,30 @@ Use when: the series fluctuates around a stable non-zero level (e.g. temperature
 
 ---
 
+## Engineering trend and lag features
+
+```python
+import pandas as pd
+
+df = pd.DataFrame({'y': [3.1, 3.4, 3.0, 3.8, 4.1]})
+
+df['trend'] = range(len(df))
+df['lag_1'] = df['y'].shift(1)
+```
+
+```
+     y  trend  lag_1
+0  3.1      0    NaN
+1  3.4      1    3.1
+2  3.0      2    3.4
+3  3.8      3    3.0
+4  4.1      4    3.8
+```
+
+Drop rows where `lag_1` is `NaN` before fitting.
+
+---
+
 ## Second exercise: forecasting financial data
 
 Open the exercise at:

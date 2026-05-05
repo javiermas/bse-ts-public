@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.23.1"
+__generated_with = "0.23.2"
 app = marimo.App(width="full")
 
 
@@ -20,6 +20,19 @@ def _():
 
     df = pd.read_csv(Path(__file__).parent / "data" / "01_grid_load.csv", index_col=0, parse_dates=True)
     return df, np, pd, plt
+
+
+@app.cell(hide_code=True)
+def _(df, mo, np, pd, plt):
+    _start = pd.Timestamp(df.index.min()).strftime("%b %Y")
+    _end = pd.Timestamp(df.index.max()).strftime("%b %Y")
+    mo.md(
+        f"**Data loaded:** `df` — {len(df)} observations ({_start}–{_end}). "
+        f"Columns: {list(df.columns)}. "
+        f"`pd`, `np`, `plt` available."
+    )
+    _ = np.array([]), plt.rcParams
+    return
 
 
 @app.cell(hide_code=True)
@@ -45,6 +58,12 @@ def _(mo):
     2. Produce a simple **forecast** of electricity demand for the next 10 years. No statistical/ML models are required.
     3. **Present** a capacity plan to the Minister.
     """)
+    return
+
+
+@app.cell
+def _(df):
+    df.plot()
     return
 
 

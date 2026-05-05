@@ -19,13 +19,33 @@ def _():
     sales_data = sales_data.set_index("date")
     sales_data.index.freq = "MS"
     sales = sales_data["sales"]
-    return mo, np, pd, plt, sales
+    return mo, np, pd, plt, sales, sales_data
+
+
+@app.cell(hide_code=True)
+def _(mo, np, pd, plt, sales, sales_data):
+    _start = pd.Timestamp(sales.index[0]).strftime("%b %Y")
+    _end = pd.Timestamp(sales.index[-1]).strftime("%b %Y")
+    mo.md(
+        f"**Data loaded:** `sales` — {len(sales_data)} monthly observations"
+        f" ({_start}–{_end}),"
+        f" mean {np.mean(sales):,.0f} units/month."
+        f" (`plt`, `pd`, `np` are available in your cells.)"
+    )
+    _ = plt.rcParams
+    return
 
 
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
     # Exercise 04: Retail Pulse — forecasting OTC allergy tablet demand
+
+    After a couple years at the IEA, you're ready for a new challenge.
+    You're considering buying an appartment and with the current prices you'd need
+    a second job to afford it. So when a recruiter from the pharmaceutical
+    industry reaches out, you jump at the opportunity to apply your data
+    skills in a new context.
 
     You joined the procurement analytics team at **Medistor**, a mid-size
     generics distributor that supplies independent pharmacies across the country.
@@ -90,17 +110,6 @@ def _(mo):
 
     Defend the specification you chose. What is the MAE on the held-out window?
     Does the model capture the spring peak adequately?
-
-    Suppress convergence warnings with:
-    ```python
-    import warnings
-    from statsmodels.tsa.statespace.sarimax import SARIMAX
-    from statsmodels.tools.sm_exceptions import ConvergenceWarning
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore", ConvergenceWarning)
-        warnings.simplefilter("ignore", UserWarning)
-        result = model.fit(disp=False, maxiter=200)
-    ```
     """)
     return
 
@@ -117,8 +126,7 @@ def _(mo):
     ## 3. Deliver the forecast
 
     Refit the model on all 192 months, then forecast 12 months ahead from the
-    end of the series. Extract a 95% prediction interval using
-    `get_forecast(steps=12).conf_int()`.
+    end of the series. Extract a 95% prediction interval.
 
     Present the full 12-month forecast table (point estimate and interval for
     each month). Call out the spring peak month specifically: what is the

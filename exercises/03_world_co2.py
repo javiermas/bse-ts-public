@@ -36,9 +36,7 @@ def _(mo):
     # Exercise 03: A new chapter — forecasting world CO2
 
     The structured-products book at **Bayes Capital** has been good to you:
-    the structured-product brief from your first weeks, the OLS forecast that
-    looked reasonable until you diagnosed the MA dynamics it was missing — the
-    head of research has stopped second-guessing your model choices. But you
+    after some work there the head of research has stopped second-guessing your model choices. But you
     keep catching yourself wondering whether forecasting bond yields and equity
     indices is the most useful thing you could be doing with what you've
     learned.
@@ -52,9 +50,7 @@ def _(mo):
     > *"Annual world CO2 emissions, 1960 through 2025. We need a forecast to
     > 2050 and a defensible argument for why we should believe it. Our outlook
     > report goes to the climate negotiation in November and the policy team
-    > needs to know whether the curve bends — and if so, when. Pick whatever
-    > model class you like. We care more about how you reason about it than
-    > which family of estimators wins."*
+    > needs to know whether the curve bends — and if so, when.
 
     The data on your desk:
 

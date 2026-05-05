@@ -6,10 +6,10 @@ This repository consists of teaching material on time series forecasting for the
 - Methods for time-series forecasting: ARIMA, SARIMA, boosting.
 - Constraint-based optimization: how to use time series forecasts in automated decision-making.
 
-The theoretical content can be found in `slides.html`. The applied content can be found in `class-prepared-energy-consumption.ipynb`.
+The theoretical content can be found in `slides.html`.
 
 The evaluation will be done based on:
-- 3 exercises on time series concepts that can be found in `exercises`.
+- 5 in-class exercises that can be found in `exercises`.
 - A final project explained in `final_project`.
 
 ## Installation
