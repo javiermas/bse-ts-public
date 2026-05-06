@@ -19,7 +19,7 @@ def _():
     co2 = _df["co2"].dropna()
     population = _df["population"]
     co2_per_capita = _df["co2_per_capita"].dropna()
-    return co2, co2_per_capita, mo, population
+    return co2, co2_per_capita, mo, np, pd, plt, population
 
 
 @app.cell(hide_code=True)
@@ -50,7 +50,7 @@ def _(mo):
     > *"Annual world CO2 emissions, 1960 through 2025. We need a forecast to
     > 2050 and a defensible argument for why we should believe it. Our outlook
     > report goes to the climate negotiation in November and the policy team
-    > needs to know whether the curve bends — and if so, when.
+    > needs to know whether the curve bends — and if so, when."*
 
     The data on your desk:
 
@@ -68,6 +68,9 @@ def _(mo):
     1. Explore the series.
     2. Fit a couple of ARIMA specifications and compare their forecasts to 2050.
     3. Pick a model and answer the IEA's question.
+
+    *Optional:* you may use `population` and `co2_per_capita` if they sharpen
+    your argument (for example total emissions vs per-capita), not only `co2`.
     """)
     return
 
@@ -79,6 +82,42 @@ def _(mo):
 
     Plot the series and any transformations of it that help you decide what
     to model.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ### Reference: snippets (commented — copy and adapt)
+
+    ```python
+    # --- First-order differences ---
+    # y is a pd.Series (e.g. co2). .diff() loses the first row; dropna() drops NaN.
+    # d1 = y.diff().dropna()
+
+    # --- Log scale, then first-order differences (needs y > 0 everywhere) ---
+    # import numpy as np
+    # log_y = np.log(y)
+    # d1_log = log_y.diff().dropna()
+
+    # --- Undo log on predictions (if you fitted on log(y)) ---
+    # np.exp maps forecasts and CIs back to the original scale (quick shortcut).
+    # y_hat_level = np.exp(y_hat_log)
+    # ci_level = np.exp(ci_log)
+
+    # --- pmdarima: import, fit, predict (orders in ARIMA(...); training series in fit(...)) ---
+    # from pmdarima import ARIMA
+    # h = 25  # example: years ahead
+    # model = ARIMA(order=(1, 1, 1))
+    # model.fit(y_train)  # pass a 1d array-like or Series
+    # y_hat, ci = model.predict(n_periods=h, return_conf_int=True, alpha=0.05)
+    #
+    # # Build a Series for the helper (example):
+    # future = np.arange(y_train.index[-1] + 1, y_train.index[-1] + 1 + h)
+    # forecast_series = pd.Series(y_hat, index=future)
+    # plot_real_and_forecast(y_train, forecast_series, ylabel="MtCO2")
+    ```
     """)
     return
 
@@ -97,6 +136,60 @@ def _(mo):
     Fit a couple of ARIMA specifications, plot the point forecasts on the same
     axis, and pick the one you'd defend.
     """)
+    return
+
+
+@app.cell
+def _(co2, np, pd, plt):
+    def plot_real_and_forecast(
+        history: pd.Series,
+        forecast: pd.Series,
+        *,
+        ax=None,
+        title=None,
+        ylabel=None,
+        show_history=True,
+        forecast_label="Forecast",
+        forecast_color="#DD8452",
+    ):
+        """Line plot: observed history vs forecast. `history` and `forecast` are pd.Series (index = time)."""
+        if ax is None:
+            _, ax = plt.subplots(figsize=(11, 4))
+        cutoff = history.index[-1]
+        ax.axvline(cutoff, color="grey", linestyle=":", linewidth=1.2, zorder=1)
+        if show_history:
+            ax.plot(
+                history.index,
+                history.values,
+                color="#4C72B0",
+                marker=".",
+                markersize=5,
+                label="Observed",
+                zorder=2,
+            )
+        ax.plot(
+            forecast.index,
+            forecast.values,
+            color=forecast_color,
+            marker=".",
+            markersize=5,
+            linestyle="--",
+            linewidth=2.0,
+            label=forecast_label,
+            zorder=2,
+        )
+        ax.legend(loc="best", fontsize=9)
+        if title is None:
+            title = f"Observed vs forecast (cutoff: {cutoff})"
+
+        ax.set_title(title)
+        if ylabel is not None:
+            ax.set_ylabel(ylabel)
+        return ax
+
+    future_dates = np.arange(co2.index[-1] + 1, 2051)
+    dummy_preds = pd.Series([co2.iloc[-1]]*len(future_dates), index=future_dates)
+    plot_real_and_forecast(co2, dummy_preds)
     return
 
 

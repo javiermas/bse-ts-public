@@ -154,7 +154,7 @@ layout: false
 
 # About me
 
-* **Msc Data Science at BSE**
+* **MSc Data Science at BSE**
 
 * Data at:
   * Telefonica - Koa Health
@@ -329,7 +329,7 @@ The mean is the maximum-likelihood forecast for a white-noise series.
 ## Naive heuristics
 
 - Both the last value and historical mean can be made seasonal by taking *groupby* versions of it (e.g. mean by hour of the day) 
-- In any real ML application, naive heuristics should always go your first go-to model. The baseline you try to beat with more complex models.
+- In any real ML application, naive heuristics should always be your first go-to model. The baseline you try to beat with more complex models.
 
 ???
 White board example of Glovo demand with 2 days of data, students are asked to predict the next day.
@@ -577,6 +577,22 @@ Both forecasts collapse to $\mu = c\,/\,(1-\phi_1) = 10$, whatever the starting 
 
 ---
 
+## Using pmdarima
+
+Pass **orders** and options such as **`trend='ct'`** (constant + linear time trend) to `ARIMA(...)`; pass the series to **`fit(y)`**. Optional exogenous regressors: **`fit(y, X)`**.
+
+```python
+from pmdarima import ARIMA
+
+model = ARIMA(order=(1, 1, 1), trend='ct')
+model.fit(y_train)
+y_hat, ci95 = model.predict(n_periods=24, return_conf_int=True, alpha=0.05)
+```
+
+**`auto_arima`:** same workflow after fitting — `auto_arima(y_train, seasonal=True, m=12)` then `predict(n_periods=...)`.
+
+---
+
 ## Third exercise: forecasting CO2
 
 Open the exercise at:
@@ -775,7 +791,7 @@ The entire job of the practitioner is building the feature matrix.
 
 * **Trends also matter** — trees predict by averaging leaf values
 and cannot extrapolate beyond the training range. Detrend before fitting.
-* **Seasonality is adressed via features** — encode it as calendar features (hour of day, day of week).
+* **Seasonality is addressed via features** — encode it as calendar features (hour of day, day of week).
 Seasonal differencing might be necessary.
 * **Horizon $h$** — only lags $\geq h$ are valid at prediction time to avoid leakage.
 
@@ -931,7 +947,7 @@ class: center, middle
 
 ---
 
-# Contraint-based optimization
+# Constraint-based optimization
 
 ---
 layout: false
