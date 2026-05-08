@@ -174,7 +174,7 @@ javier.mas93@gmail.com
   * Theoretical understanding of time series problems
   * Methods to analyze and visualize time series
   * Methods to forecast time series
-* **Constraint-based optimization**
+* **Constrained optimization**
 * **Software development**
   * Clean code
   * Unit-tests
@@ -947,40 +947,40 @@ class: center, middle
 
 ---
 
-# Constraint-based optimization
+# Constrained optimization
 
 ---
 layout: false
 
 
-## Constraint-based optimization (CBO)
+## Constrained optimization
 
-**Why constraint-based optimization?**
+**Why constrained optimization?**
 * Forecasts tell you what might happen
-* CBO helps you automate decisions with those forecasts
+* Constrained optimization helps you automate decisions with those forecasts
 * Common use cases: staffing, routing, inventory, energy, marketing budgets
 
 ---
 
 ## Optimisation is always the same problem
 
-Every method you know is minimising a loss over decision variables:
+Every method you know is minimising a loss over variables:
 
-| Method | Decision variables | Loss | Solver |
+| Method | Variables | Loss | Solver |
 |---|---|---|---|
 | Least squares | weights $\beta$ | $\lVert y - X\beta \rVert^2$ | closed form |
 | Neural network | weights $W$ | MSE / cross-entropy | SGD |
-| CBO | staff, inventory, schedules | cost function | LP / MILP / NLP solver |
+| Constrained optimization | staff, inventory | cost function | LP / MILP / NLP solver |
 
 What changes is the *structure*: continuous vs integer variables, smooth vs non-smooth loss, unconstrained vs hard constraints.
 
-Gradient-based solvers require a smooth differentiable loss — they break on integer variables and hard constraints. MILP solvers are designed exactly for that case.
+Gradient-based solvers require a smooth differentiable loss — they break on integer variables and hard constraints.
 
 ---
 
-## Constraint-based optimization solvers
+## Constrained optimization solvers
 
-The general form of a CBO problem:
+The general form of a constrained optimization problem:
 
 <div>$$\begin{aligned} \min_{x} \quad & f(x) \\ \text{subject to} \quad & g_i(x) \leq 0 \\ & h_j(x) = 0 \\ & x \in \mathcal{X} \end{aligned}$$</div>
 
@@ -988,7 +988,7 @@ where $x$ are the decision variables, $f$ is the cost function, $g_i$ are inequa
 
 ---
 
-## Constraint-based optimization solvers
+## Constrained optimization solvers
 
 What changes across solver families is the structure of $f$, $g_i$, $h_j$, and $\mathcal{X}$:
 
@@ -998,11 +998,23 @@ What changes across solver families is the structure of $f$, $g_i$, $h_j$, and $
 
 ---
 
-## Exercise: Medistor procurement planning
+## Example: procurement of antihistamines
 
-Open the exercise at:
+Following the 4th exercise, we could take that forecast and optimize the purchases of antihistamines: 
 
-https://github.com/javiermas/bse-ts-public/blob/main/exercises/05_medistor_procurement.py
+**Objective:**
+
+<div>$$\max_{o,I} \quad \sum_{t} \bigl( \text{revenue}_t - \text{holding cost}_t - \text{margin cost}_t \bigr)$$</div>
+
+**Subject to:** 
+
+<div>$$\begin{aligned} 0 \leq I_t &\leq I^{\max} && \text{(inventory capacity)} 
+\\ 0 \leq o_t &\leq o^{\max}, \quad o_t \in \mathbb{Z}_{\geq 0} && \text{(supplier pallet cap)}\end{aligned}$$</div>
+
+This can be solved with a **Mixed-Integer Linear Programming** solver.
+
+
+
 
 </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
